@@ -1,0 +1,13 @@
+  <launch>
+
+  <node pkg="mapping" type="tfs.py" name="TFServer"/>
+  <node pkg="mapping" type="map.py" name="OccMapping"/>
+  <node pkg="map_server" type="map_server" name="MAP_SERVER" args="$(find mapping)/maps/gm-map1.yaml"/>
+  <node pkg="amcl" type="amcl" name="AMCL"/>
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find mapping)/launch/amcl.rviz" />
+
+  <node pkg="rosbag" type="play" name="bag_playback" args="--clock $(find mapping)/bags/amcl-bag1.bag"/>
+
+
+  </launch>
